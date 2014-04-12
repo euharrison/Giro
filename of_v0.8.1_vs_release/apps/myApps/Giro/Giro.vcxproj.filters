@@ -34,6 +34,9 @@
     <ClCompile Include="..\..\..\addons\ofxPostGlitch\src\ofxPostGlitch.cpp">
       <Filter>addons\ofxPostGlitch\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.cpp">
+      <Filter>addons\ofxThreadedImageLoader\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -53,6 +56,12 @@
     </Filter>
     <Filter Include="addons\ofxPostGlitch\src">
       <UniqueIdentifier>{E5FAED91-B2A2-347D-7780-5FE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxThreadedImageLoader">
+      <UniqueIdentifier>{e135cac7-2b92-4a6b-8ded-9bc74a839d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxThreadedImageLoader\src">
+      <UniqueIdentifier>{203f87f4-4cf0-4fe3-9e5d-6edd91e6eb60}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="src\Sequence.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxThreadedImageLoader\src\ofxThreadedImageLoader.h">
+      <Filter>addons\ofxThreadedImageLoader\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

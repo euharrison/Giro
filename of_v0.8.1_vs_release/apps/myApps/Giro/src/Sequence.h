@@ -1,11 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxThreadedImageLoader.h"
 
 class Sequence {
 
 public:
-
+	
+	ofxThreadedImageLoader loader;
 	vector<ofImage> frames;
 	int currentFrame;
 	int totalFrames;
@@ -13,11 +15,10 @@ public:
 	Sequence(string folder, int _totalFrames) {
 		currentFrame = 0;
 		totalFrames = _totalFrames;
+		frames.resize(totalFrames);
 		for (int i = 0; i < totalFrames; i++){
-			frames.push_back(ofImage(folder+"/"+ofToString(i+1)+".jpg"));
+			loader.loadFromDisk(frames[i], folder+"/"+ofToString(i+1)+".jpg");
 		}
-
-		//frames[0].
 	}
 
 	void update() {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-//#include "ofxGui.h"
+#include "ofxGui.h"
 #include "ofxPostGlitch.h"
 #include "Sequence.h"
 
@@ -23,23 +23,21 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
+		
+		ofFbo			myFbo;
+		ofxPostGlitch	myGlitch;
 
 		vector<Sequence*>	sequences;
 		int					current;
 		
-		void	changeSequenceRandom();
-		void	changeSequence(int newIndex);
+		int		millis;
+		float	velocity; //[0,1]
+
+		int frameCount;
+		
+		void	changeSequence();
 		void	nextFrame();
-
-		int		millisToChangeSequence;
-		void	resetChangeSequenceTimer();
-
-		ofColor color;
-		int		framesToChangeColor;
-		void	changeColor();
-
-		ofFbo			myFbo;
-		ofxPostGlitch	myGlitch;
+		void	resetGlitch();
 
 
 		//serial
@@ -53,16 +51,11 @@ class ofApp : public ofBaseApp{
 
 		//gui
 
-		//ofxPanel gui;
-
-		/*
-		ofxFloatSlider radius;
-		ofxColorSlider color;
-		ofxVec2Slider center;
-		ofxIntSlider circleResolution;
-		ofxToggle filled;
-		ofxButton twoCircles;
-		ofxButton ringButton;
-		ofxLabel screenSize;
-		*/
+		bool			showGui;
+		ofxPanel		gui;
+		
+		ofxFloatSlider	secondsToChangeSequence;
+		ofxFloatSlider	velocityToColor;
+		ofxIntSlider	framesPerColor;
+		ofxFloatSlider	velocityToGlitch;
 };

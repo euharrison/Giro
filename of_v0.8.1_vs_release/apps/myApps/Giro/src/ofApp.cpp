@@ -10,41 +10,25 @@ void ofApp::setup(){
 
 	myFbo.allocate(1024, 768);
 	myGlitch.setup(&myFbo);
-
-	//disable all initial effects
-	myGlitch.setFx(OFXPOSTGLITCH_CONVERGENCE	, false);
-	myGlitch.setFx(OFXPOSTGLITCH_GLOW			, false);
-	myGlitch.setFx(OFXPOSTGLITCH_SHAKER			, false);
-	myGlitch.setFx(OFXPOSTGLITCH_CUTSLIDER		, false);
-	myGlitch.setFx(OFXPOSTGLITCH_TWIST			, false);
-	myGlitch.setFx(OFXPOSTGLITCH_OUTLINE		, false);
-	myGlitch.setFx(OFXPOSTGLITCH_NOISE			, false);
-	myGlitch.setFx(OFXPOSTGLITCH_SLITSCAN		, false);
-	myGlitch.setFx(OFXPOSTGLITCH_SWELL			, false);
-	myGlitch.setFx(OFXPOSTGLITCH_INVERT			, false);
+	resetGlitch();
 	
-	myGlitch.setFx(OFXPOSTGLITCH_CR_HIGHCONTRAST, false);
-	myGlitch.setFx(OFXPOSTGLITCH_CR_BLUERAISE	, false);
-	myGlitch.setFx(OFXPOSTGLITCH_CR_REDRAISE	, false);
-	myGlitch.setFx(OFXPOSTGLITCH_CR_GREENRAISE	, false);
-	myGlitch.setFx(OFXPOSTGLITCH_CR_BLUEINVERT	, false);
-	myGlitch.setFx(OFXPOSTGLITCH_CR_REDINVERT	, false);
-	myGlitch.setFx(OFXPOSTGLITCH_CR_GREENINVERT	, false);
 	
+	gui.setDefaultWidth(500);
+	gui.setup();
+	gui.add(secondsToChangeSequence.setup("seconds_change_sequence", 2, 0, 10));
+	gui.add(velocityToColor.setup("velocity_to_color", 10, 0, 40));
+	gui.add(framesPerColor.setup("frames_color", 3, 1, 20));
+	gui.add(velocityToGlitch.setup("velocity_to_glitch", 10, 0, 40));
+	
+	gui.loadFromFile("settings.xml");
+	showGui = false;
 
-	//gui.setup(); // most of the time you don't need a name
-	/*
-	gui.add(filled.setup("fill", true));
-	gui.add(radius.setup( "radius", 140, 10, 300 ));
-	gui.add(circleResolution.setup("circle res", 5, 3, 90));
-	gui.add(twoCircles.setup("two circles"));
-	gui.add(ringButton.setup("ring"));
-	gui.add(screenSize.setup("screen size", ""));
-	*/
 
 	buffer = "";
 	serial.setup(0, 9600);
-	
+
+	frameCount = 0;
+
 	sequences.push_back(new Sequence("bison", 16));
 	sequences.push_back(new Sequence("cachorro", 12));
 	sequences.push_back(new Sequence("macaco", 19));
@@ -52,17 +36,14 @@ void ofApp::setup(){
 	sequences.push_back(new Sequence("op_cylinder", 8));
 	sequences.push_back(new Sequence("op_triangle", 15));
 
-			
-	changeSequence(0);
-	
-	resetChangeSequenceTimer();
 
-	framesToChangeColor = 0;
+	changeSequence();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
+	//serial
 	int byte = serial.readByte();
 	while (byte != OF_SERIAL_NO_DATA && byte != OF_SERIAL_ERROR && byte != 0) {
 		switch(byte) {
@@ -79,8 +60,29 @@ void ofApp::update(){
 		byte = serial.readByte();
 	}
 
-	if (ofGetElapsedTimeMillis() > millisToChangeSequence) {
-		changeSequenceRandom();
+	//change sequence
+	if ((ofGetElapsedTimeMillis()-millis)/1000.f > secondsToChangeSequence) {
+		changeSequence();
+	}
+	
+	//color
+	myGlitch.setFx(OFXPOSTGLITCH_CR_BLUEINVERT	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_REDINVERT	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_GREENINVERT	, false);
+	if (velocity > velocityToColor) {
+		int color = (int)((float)frameCount/framesPerColor) % 3;
+		switch(color) {
+			case 0: myGlitch.setFx(OFXPOSTGLITCH_CR_BLUEINVERT	, true); break;
+			case 1: myGlitch.setFx(OFXPOSTGLITCH_CR_REDINVERT	, true); break;
+			case 2: myGlitch.setFx(OFXPOSTGLITCH_CR_GREENINVERT	, true); break;
+		}
+	}
+
+	//glitch
+	if (velocity > velocityToGlitch) {
+		myGlitch.setFx(OFXPOSTGLITCH_SWELL	, true);
+	} else {
+		myGlitch.setFx(OFXPOSTGLITCH_SWELL	, false);
 	}
 }
 
@@ -95,6 +97,10 @@ void ofApp::draw(){
 
 	ofSetColor(255);
 	myFbo.draw(0,0);
+
+	if (showGui) {
+		gui.draw();
+	}
 }
 
 //--------------------------------------------------------------
@@ -104,14 +110,25 @@ void ofApp::keyPressed(int key){
 		case 'F':
 			ofToggleFullscreen();
 			break;
-
 		case ' ':
+			showGui = !showGui;
+			break;
+		case 's':
+		case 'S':
+			gui.saveToFile("settings.xml");
+			break;
+		case 'l':
+		case 'L':
+			gui.loadFromFile("settings.xml");
+			break;
+			
+		case 'x':
+		case 'X':
 			nextFrame();
 			break;
-
 		case 'z':
 		case 'Z':
-			changeSequenceRandom();
+			changeSequence();
 			break;
 	}
 
@@ -205,71 +222,51 @@ void ofApp::onReceiveSerial(string data) {
 }
 
 //--------------------------------------------------------------
-void ofApp::changeSequenceRandom() {
+void ofApp::changeSequence() {
 	int total = sequences.size();
 	if (total > 1) {
+
 		int newIndex;
 		do {
 			newIndex = int(ofRandom(total));
 		} while(newIndex == current);
-		changeSequence(newIndex); 
+
+		current = newIndex;
+
+		nextFrame();
 	}
-}
-
-//--------------------------------------------------------------
-void ofApp::changeSequence(int newIndex) {
-	current = newIndex;
-
-	resetChangeSequenceTimer();
 }
 
 //--------------------------------------------------------------
 void ofApp::nextFrame() {
 	sequences[current]->update();
 
-	resetChangeSequenceTimer();
+	float diff_seconds = (ofGetElapsedTimeMillis()-millis)/1000.f;
+	velocity = 1/diff_seconds;
+
+	millis = ofGetElapsedTimeMillis();
+
+	frameCount++;
+}
+
+//--------------------------------------------------------------
+void ofApp::resetGlitch() {
+	myGlitch.setFx(OFXPOSTGLITCH_CONVERGENCE	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_GLOW			, false);
+	myGlitch.setFx(OFXPOSTGLITCH_SHAKER			, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CUTSLIDER		, false);
+	myGlitch.setFx(OFXPOSTGLITCH_TWIST			, false);
+	myGlitch.setFx(OFXPOSTGLITCH_OUTLINE		, false);
+	myGlitch.setFx(OFXPOSTGLITCH_NOISE			, false);
+	myGlitch.setFx(OFXPOSTGLITCH_SLITSCAN		, false);
+	myGlitch.setFx(OFXPOSTGLITCH_SWELL			, false);
+	myGlitch.setFx(OFXPOSTGLITCH_INVERT			, false);
 	
-	framesToChangeColor++;
-	if (framesToChangeColor == 3) {
-		framesToChangeColor = 0;
-		changeColor();
-	}
-
-	/*
-	if (ofGetElapsedTimeMillis() - millisToGlitch < 250) {
-		//glitchValue += 50;
-		if (glitchValue > 768/2.f) { 
-			//glitchValue = 768/2.f;
-		}
-	} else {
-		//glitchValue -= 100;
-		if (glitchValue < 0) { 
-			//glitchValue = 0;
-		}
-	}
-	millisToGlitch = ofGetElapsedTimeMillis();
-	*/
-}
-
-//--------------------------------------------------------------
-void ofApp::resetChangeSequenceTimer() {
-	millisToChangeSequence = ofGetElapsedTimeMillis() + 2000;
-}
-
-//--------------------------------------------------------------
-void ofApp::changeColor() {
-	switch(int(ofRandom(4))) {
-		case 0:
-			color.set(255,255,255);
-			break;
-		case 1:
-			color.set(255,0,0);
-			break;
-		case 2:
-			color.set(0,255,0);
-			break;
-		case 3:
-			color.set(0,0,255);
-			break;
-	}
+	myGlitch.setFx(OFXPOSTGLITCH_CR_HIGHCONTRAST, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_BLUERAISE	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_REDRAISE	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_GREENRAISE	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_BLUEINVERT	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_REDINVERT	, false);
+	myGlitch.setFx(OFXPOSTGLITCH_CR_GREENINVERT	, false);
 }
