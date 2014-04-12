@@ -1,0 +1,9 @@
+﻿Build started 12/04/2014 11:07:15.
+     1>Project "C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         openframeworksLib.vcxproj -> C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\libs\openFrameworksCompiled\project\vs\..\..\lib\vs\openframeworksLib.lib
+     1>Done Building Project "C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.85
