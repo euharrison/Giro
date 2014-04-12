@@ -12,4 +12,5 @@ O corpo como motor e a bicicleta-cinema. Esse projeto é também uma homenagem a E
 ## Autores
 
 Harrison Mendonça [@euharrison](https://github.com/euharrison)
+
 Daniel Tumati

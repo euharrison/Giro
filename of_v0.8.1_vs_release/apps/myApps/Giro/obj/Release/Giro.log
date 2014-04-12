@@ -1,9 +1,9 @@
-﻿Build started 12/04/2014 00:14:40.
-     1>Project "C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\Giro.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/04/2014 13:15:15.
+     1>Project "C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\Giro.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\..\libs\openFrameworks /I..\..\..\libs\openFrameworks\graphics /I..\..\..\libs\openFrameworks\app /I..\..\..\libs\openFrameworks\sound /I..\..\..\libs\openFrameworks\utils /I..\..\..\libs\openFrameworks\communication /I..\..\..\libs\openFrameworks\video /I..\..\..\libs\openFrameworks\types /I..\..\..\libs\openFrameworks\math /I..\..\..\libs\openFrameworks\3d /I..\..\..\libs\openFrameworks\gl /I..\..\..\libs\openFrameworks\events /I..\..\..\libs\glut\include /I..\..\..\libs\rtAudio\include /I..\..\..\libs\quicktime\include /I..\..\..\libs\freetype\include /I..\..\..\libs\freetype\include\freetype2 /I..\..\..\libs\freeImage\include /I..\..\..\libs\fmodex\include /I..\..\..\libs\videoInput\include /I..\..\..\libs\glew\include\ /I..\..\..\libs\glu\include /I..\..\..\libs\tess2\include /I..\..\..\libs\cairo\include\cairo /I..\..\..\libs\poco\include /I..\..\..\libs\glfw\include /I..\..\..\libs\openssl\include /I..\..\..\addons /Zi /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _CONSOLE /D POCO_STATIC /D CAIRO_WIN32_STATIC_BUILD /D DISABLE_SOME_FLOATING_POINT /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\ofApp.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\..\libs\openFrameworks /I..\..\..\libs\openFrameworks\graphics /I..\..\..\libs\openFrameworks\app /I..\..\..\libs\openFrameworks\sound /I..\..\..\libs\openFrameworks\utils /I..\..\..\libs\openFrameworks\communication /I..\..\..\libs\openFrameworks\video /I..\..\..\libs\openFrameworks\types /I..\..\..\libs\openFrameworks\math /I..\..\..\libs\openFrameworks\3d /I..\..\..\libs\openFrameworks\gl /I..\..\..\libs\openFrameworks\events /I..\..\..\libs\glut\include /I..\..\..\libs\rtAudio\include /I..\..\..\libs\quicktime\include /I..\..\..\libs\freetype\include /I..\..\..\libs\freetype\include\freetype2 /I..\..\..\libs\freeImage\include /I..\..\..\libs\fmodex\include /I..\..\..\libs\videoInput\include /I..\..\..\libs\glew\include\ /I..\..\..\libs\glu\include /I..\..\..\libs\tess2\include /I..\..\..\libs\cairo\include\cairo /I..\..\..\libs\poco\include /I..\..\..\libs\glfw\include /I..\..\..\libs\openssl\include /I..\..\..\addons /I..\..\..\addons\ofxGui\libs /I..\..\..\addons\ofxGui\src /I..\..\..\addons\ofxPostGlitch\libs /I..\..\..\addons\ofxPostGlitch\src /Zi /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _CONSOLE /D POCO_STATIC /D CAIRO_WIN32_STATIC_BUILD /D DISABLE_SOME_FLOATING_POINT /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\ofApp.cpp
          ofApp.cpp
-     1>C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\libs\poco\include\Poco/StreamConverter.h(126): warning C4250: 'Poco::InputStreamConverter' : inherits 'std::basic_istream<_Elem,_Traits>::std::basic_istream<_Elem,_Traits>::_Add_vtordisp1' via dominance
+     1>C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\libs\poco\include\Poco/StreamConverter.h(126): warning C4250: 'Poco::InputStreamConverter' : inherits 'std::basic_istream<_Elem,_Traits>::std::basic_istream<_Elem,_Traits>::_Add_vtordisp1' via dominance
                  with
                  [
                      _Elem=char,
@@ -15,7 +15,7 @@
                      _Elem=char,
                      _Traits=std::char_traits<char>
                  ]
-     1>C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\libs\poco\include\Poco/StreamConverter.h(144): warning C4250: 'Poco::OutputStreamConverter' : inherits 'std::basic_ostream<_Elem,_Traits>::std::basic_ostream<_Elem,_Traits>::_Add_vtordisp2' via dominance
+     1>C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\libs\poco\include\Poco/StreamConverter.h(144): warning C4250: 'Poco::OutputStreamConverter' : inherits 'std::basic_ostream<_Elem,_Traits>::std::basic_ostream<_Elem,_Traits>::_Add_vtordisp2' via dominance
                  with
                  [
                      _Elem=char,
@@ -31,25 +31,34 @@
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"bin\Giro.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\..\libs\glut\lib\vs /LIBPATH:..\..\..\libs\glfw\lib\vs /LIBPATH:..\..\..\libs\rtAudio\lib\vs /LIBPATH:..\..\..\libs\FreeImage\lib\vs /LIBPATH:..\..\..\libs\freetype\lib\vs /LIBPATH:..\..\..\libs\quicktime\lib\vs /LIBPATH:..\..\..\libs\fmodex\lib\vs /LIBPATH:..\..\..\libs\videoInput\lib\vs /LIBPATH:..\..\..\libs\cairo\lib\vs /LIBPATH:..\..\..\libs\glew\lib\vs /LIBPATH:..\..\..\libs\glu\lib\vs /LIBPATH:..\..\..\libs\openssl\lib\vs /LIBPATH:..\..\..\libs\Poco\lib\vs /LIBPATH:..\..\..\libs\tess2\lib\vs "cairo-static.lib" "pixman-1.lib" msimg32.lib OpenGL32.lib GLu32.lib kernel32.lib setupapi.lib Vfw32.lib comctl32.lib glut32.lib rtAudio.lib videoInput.lib libfreetype.lib FreeImage.lib qtmlClient.lib dsound.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib glew32s.lib fmodex_vc.lib glu32.lib crypt32.lib libeay32MD.lib ssleay32MD.lib PocoFoundationmd.lib PocoNetmd.lib PocoUtilmd.lib PocoXMLmd.lib Ws2_32.lib tess2.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:PocoFoundationd.lib /NODEFAULTLIB:atlthunk.lib /NODEFAULTLIB:LIBC.lib /NODEFAULTLIB:LIBCMT /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"bin\Giro.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE:NO /NXCOMPAT /IMPLIB:"bin\Giro.lib" /MACHINE:X86 /SAFESEH obj\Release\icon.res
          obj\Release\main.obj
          obj\Release\ofApp.obj
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\libs\openFrameworksCompiled\lib\vs\openframeworksLib.lib
+         obj\Release\ofxBaseGui.obj
+         obj\Release\ofxButton.obj
+         obj\Release\ofxGuiGroup.obj
+         obj\Release\ofxLabel.obj
+         obj\Release\ofxPanel.obj
+         obj\Release\ofxSlider.obj
+         obj\Release\ofxSliderGroup.obj
+         obj\Release\ofxToggle.obj
+         obj\Release\ofxPostGlitch.obj
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\libs\openFrameworksCompiled\lib\vs\openframeworksLib.lib
             Creating library bin\Giro.lib and object bin\Giro.exp
          LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
-         Giro.vcxproj -> C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\bin\Giro.exe
+         Giro.vcxproj -> C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\bin\Giro.exe
        PostBuildEvent:
-         xcopy /e /i /y "C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\*.dll" "C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\bin"
+         xcopy /e /i /y "C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\*.dll" "C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\bin"
          :VCEnd
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\Assimp32.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\fmodex.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\fmodexL.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\FreeImage.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\FreeType-6.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\glut32.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\libeay32.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\ssleay32.dll
-         C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\Zlib.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\Assimp32.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\fmodex.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\fmodexL.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\FreeImage.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\FreeType-6.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\glut32.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\libeay32.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\ssleay32.dll
+         C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\..\..\..\export\vs\Zlib.dll
          9 arquivo(s) copiado(s)
-     1>Done Building Project "C:\Users\Harrison\Desktop\of_v0.8.1_vs_release\apps\myApps\Giro\Giro.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\Harrison\Dropbox\Giro\Software\of_v0.8.1_vs_release\apps\myApps\Giro\Giro.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:08.34
+Time Elapsed 00:00:47.34
